@@ -1,0 +1,168 @@
+# WorkWatch
+
+WorkWatch é um sistema inteligente de monitoramento de produtividade desenvolvido em **Python**, com o objetivo de registrar e analisar atividades realizadas em um computador. O foco inicial do projeto é criar uma base sólida de monitoramento local, permitindo evoluções futuras para uso corporativo, dashboards, relatórios completos e integração com IA.
+
+---
+
+## 🚀 Status do Projeto
+
+O projeto está em **fase inicial de desenvolvimento**, com os seguintes módulos já iniciados:
+
+* **Captura da janela ativa** (identificação do programa e título da janela)
+* **Registro estruturado de dados** (data, hora, janela, aplicativo)
+* **Sistema de geração de linha CSV**
+* **Salvamento dos registros em arquivo local**
+
+O objetivo atual é evoluir para:
+
+* Monitoramento contínuo
+* Detecção de mudança de janela
+* Classificação de produtividade
+* Detector de presença com webcam
+* Detectores de ociosidade e multitarefa
+* Dashboard local
+* Sistema de relatórios
+
+---
+
+## 🧠 Objetivo Geral
+
+Monitorar e registrar automaticamente o que o usuário está fazendo no computador, com o propósito de:
+
+* Medir produtividade
+* Detectar uso inadequado do computador
+* Identificar padrões de foco e distração
+* Gerar relatórios detalhados
+* Preparar terreno para um sistema corporativo de monitoramento
+
+O projeto é inicialmente para **uso pessoal e testes locais**, visando futura expansão comercial.
+
+---
+
+## ⚙️ Tecnologias Utilizadas
+
+* **Python 3.10+**
+* `pygetwindow` → Captura da janela ativa
+* `psutil` → Identificação do programa (processo)
+* `pywin32` → Acesso ao handle da janela e PID
+* `datetime` → Registro de data/hora
+* (planejado) `opencv-python` → Detector de presença via webcam
+* (planejado) `pynput` → Monitoramento de teclado/mouse
+* (planejado) `pandas`, `matplotlib` → Relatórios e análises
+* (planejado) `Flask` → Dashboard e API local
+
+---
+
+## 📁 Estrutura Atual do Projeto
+
+```
+WorkWatch/
+│
+├── main.py
+├── monitor/
+│   ├── window_tracker.py
+│   ├── idle_tracker.py       (planejado)
+│   ├── presence_detector.py  (planejado)
+│   ├── multitask_analyzer.py (planejado)
+│
+├── analyzer/
+│   └── content_classifier.py (planejado)
+│
+├── storage/
+│   └── logs.csv
+│
+├── reports/
+│   └── report_generator.py   (planejado)
+│
+├── dashboard/
+│   └── app.py                (planejado)
+│
+└── utils/
+    ├── config.py             (planejado)
+    └── logger.py             (planejado)
+```
+
+---
+
+## 📝 Funcionalidades Concluídas
+
+### ✔ Captura da Janela Ativa
+
+O sistema detecta:
+
+* Qual janela está focada no momento
+* Título da janela
+* Nome do programa executável
+
+### ✔ Registro Estruturado
+
+Cada evento é registrado com:
+
+* Data
+* Hora
+* Título da janela
+* Programa
+
+### ✔ Salvamento em CSV
+
+O projeto já salva os registros em:
+
+```
+storage/logs.csv
+```
+
+---
+
+## 🧩 Próximas Etapas
+
+* Implementar monitoramento contínuo (loop ativo)
+* Registrar apenas quando a janela mudar
+* Criar detector de presença via webcam
+* Adicionar módulo de ociosidade (sem teclado/mouse)
+* Criar classificador simples de produtividade
+* Implementar geração de relatórios (PDF/HTML)
+* Criar dashboard local (Flask ou Streamlit)
+
+---
+
+## 🌱 Objetivo Futuro
+
+Transformar o WorkWatch em um sistema completo de monitoramento corporativo, com:
+
+* Gestão via dashboard
+* Relatórios automáticos
+* Monitoramento inteligente por IA
+* Mecanismos de alerta automático
+* Detecção de atividades suspeitas
+* Perfis de uso por colaborador
+
+---
+
+## 📌 Aviso Importante
+
+O sistema está sendo desenvolvido **somente para uso pessoal** no momento, para fins educacionais e de experimentação.
+Qualquer uso em ambiente corporativo exige:
+
+* consentimento explícito do usuário
+* políticas claras de privacidade e monitoramento
+* configuração ética e legal
+
+---
+
+## 🤝 Como Contribuir
+
+O projeto é aberto a melhorias e sugestões.
+Pull requests serão avaliados no futuro, quando a versão base estiver finalizada.
+
+---
+
+## 👨‍💻 Autor
+
+**Vinicius Lima**
+Projeto desenvolvido com fins de estudo, aprendizado e futura aplicação comercial.
+
+---
+
+## 📅 Última Atualização
+
+**16/11/2025**
