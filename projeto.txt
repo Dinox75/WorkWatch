@@ -1,0 +1,190 @@
+# 🧠 Projeto: WorkWatch – Sistema Inteligente de Monitoramento de Produtividade
+
+## 📞 Descrição geral
+
+O **WorkWatch** é um software desenvolvido em **Python**, com o objetivo de **monitorar atividades realizadas em computadores corporativos**, identificando padrões de produtividade, comportamento ocioso e uso indevido de recursos.
+O projeto será testado e desenvolvido **localmente** (no computador do desenvolvedor) e, futuramente, poderá ser adaptado para **uso corporativo comercial**.
+
+---
+
+## 🎯 Objetivo principal
+
+Monitorar, classificar e registrar todas as atividades realizadas no computador, avaliando o tempo produtivo e improdutivo, além de detectar presença física do usuário e multitarefas.
+
+---
+
+## ⚙️ Funcionalidades principais
+
+### 🖥️ 1. Monitoramento de atividades no computador
+
+* Detecta **qual aplicativo ou site** está sendo usado em tempo real.
+* Registra o **título da janela**, **programa**, **data e hora de início** e **tempo ativo**.
+* Salva os dados em um arquivo `.csv` ou banco local (`SQLite`).
+
+**Bibliotecas sugeridas:** `psutil`, `pygetwindow`, `win32gui`, `time`, `datetime`
+
+---
+
+### 🌐 2. Análise de conteúdo e classificação
+
+* Verifica o conteúdo da janela ou aba (ex: título da aba do navegador).
+* Classifica o conteúdo como:
+
+  * **Produtivo** – relacionado ao trabalho (planilhas, código, e-mails).
+  * **Neutro** – irrelevante, mas não nocivo.
+  * **Improdutivo** – redes sociais, jogos, sites adultos.
+* Usa palavras-chave ou IA leve para análise sem violar privacidade.
+
+**Bibliotecas sugeridas:** `transformers`, `openai`, `re`, `spacy`
+
+---
+
+### 🧟‍♂️ 3. Detector de presença (via webcam)
+
+* Através da webcam, detecta se o usuário **está presente na cadeira**.
+* Caso o usuário se ausente por mais de *x* minutos, registra **tempo de ausência**.
+* Usa visão computacional básica para detectar **rosto humano**.
+
+**Bibliotecas sugeridas:** `opencv-python`, `mediapipe`, `datetime`
+
+💡 *Melhoria futura:* adicionar um modo “detecção de fadiga” – reconhecer se o usuário está sonolento ou cansado (usando landmarks faciais).
+
+---
+
+### 🕹️ 4. Detector de atividade física no computador
+
+* Verifica se o usuário está **mexendo o mouse ou teclado**.
+* Registra períodos de **ociosidade digital** (sem interação por X minutos).
+
+**Bibliotecas sugeridas:** `pynput`, `time`
+
+---
+
+### 🔀 5. Análise de multitarefas
+
+* Monitora se o usuário troca janelas com muita frequência.
+* Se houver **muitas alternâncias por minuto**, registra “distração ou multitarefa”.
+* Pode gerar um **índice de foco** (quanto tempo o usuário fica na mesma tarefa).
+
+---
+
+### 🔒 6. Bloqueio e alerta automático
+
+* Se detectar conteúdo proibido, o sistema pode:
+
+  * Enviar alerta visual (“site bloqueado”);
+  * Encerrar o processo automaticamente;
+  * Gerar log do evento.
+
+💡 *Modo seguro:* Essas ações só serão ativas no modo “corporativo”, com consentimento legal.
+
+---
+
+### 📈 7. Relatórios automáticos
+
+* Gera relatórios diários/semanal em PDF, HTML ou Dashboard local.
+* Exibe:
+
+  * Tempo total de produtividade;
+  * Tempo ocioso;
+  * Aplicativos mais usados;
+  * Sites visitados;
+  * Tempo fora da cadeira;
+  * Nível de foco (multitarefa);
+  * Alertas emitidos.
+
+**Bibliotecas sugeridas:** `pandas`, `matplotlib`, `fpdf`, `jinja2`
+
+---
+
+### 📡 8. Alertas e notificações
+
+* Envia alertas quando detectar comportamento improdutivo ou ausência longa.
+* Integrações possíveis:
+
+  * WhatsApp (via N8N ou Twilio API);
+  * Email (SMTP);
+  * Notificação local (popup no Windows).
+
+---
+
+### 🖥️ 9. Dashboard local (Flask ou Streamlit)
+
+* Visualização interativa dos relatórios.
+* Filtros por data, app, categoria de uso.
+* Exibição em tempo real da atividade atual.
+
+---
+
+## 🧰 Arquitetura do sistema (versão local inicial)
+
+```
+/WorkWatch
+│
+├── main.py                # Executa o monitor geral
+├── monitor/
+│   ├── window_tracker.py   # Captura janelas e programas abertos
+│   ├── presence_detector.py# Analisa presença via webcam
+│   ├── idle_tracker.py     # Detecta tempo sem uso do mouse/teclado
+│   ├── multitask_analyzer.py# Mede alternância de janelas
+│
+├── analyzer/
+│   ├── content_classifier.py # IA simples (produtivo/improdutivo)
+│
+├── storage/
+│   ├── database.py          # CRUD SQLite
+│   ├── logs.csv
+│
+├── reports/
+│   ├── report_generator.py  # Cria relatórios automáticos
+│   └── templates/
+│       └── report.html
+│
+├── dashboard/
+│   ├── app.py               # Flask ou Streamlit dashboard
+│
+└── utils/
+    ├── config.py
+    └── logger.py
+```
+
+---
+
+## 📝 Requisitos mínimos
+
+* Python 3.10 ou superior
+* Sistema operacional: Windows (fase inicial)
+* Dependências:
+
+  ```bash
+  pip install psutil pygetwindow opencv-python pynput pandas matplotlib flask fpdf
+  ```
+
+---
+
+## 💬 Futuras melhorias
+
+1. Integração com IA generativa (interpretação de textos/pesquisas).
+2. Sistema de “ranking” de produtividade gamificado.
+3. Reconhecimento de comandos de voz (“modo trabalho”, “pausa”).
+4. Exportação automática para Google Sheets ou API corporativa.
+5. Sistema de login e autenticação local.
+6. Aprendizado contínuo: o sistema melhora conforme observa hábitos.
+
+---
+
+## ⚠️ Privacidade e ética
+
+* O sistema será **testado localmente** e **nunca usado em terceiros sem consentimento**.
+* Em uso corporativo, será fornecido **termo de ciência e política de privacidade**.
+* Nenhum dado sensível (imagem, som, texto) será enviado para fora do dispositivo sem autorização.
+
+---
+
+## 🧱 Primeira meta de desenvolvimento
+
+**Objetivo:** Criar o módulo `window_tracker.py`
+
+* Detectar e registrar o nome da janela ativa.
+* Gravar os dados (programa, título, hora) em um CSV.
+* Atualizar a cada X segundos.
