@@ -31,18 +31,25 @@ def registrar_janela(info_janela):
     linha = f"{data},{hora},{info_janela['titulo']},{info_janela['programa']}\n"
     return linha
 
+
+# 4. Função: salvar_linha()
 def salvar_linha(linha):
     with open("storage/logs.csv", "a", encoding="utf-8") as arquivo:
         arquivo.write(linha)
     
 
-
-# 4. Função principal: iniciar_monitoramento()
-#    - Loop contínuo
-#    - A cada X segundos:
-#         * chama obter_janela_ativa()
-#         * envia os dados para registrar_janela()
-#    - Não implementaremos o loop ainda, só deixamos a estrutura
-
+# 5. Função: iniciar_monitoramento()
 def iniciar_monitoramento():
-    pass  
+    janela_anterior = None                                                          #Variável para armazenar a janela anterior
+
+    while True:
+        janela_atual = obter_janela_ativa()                                         #Obtém a janela ativa atual
+
+        if janela_atual != janela_anterior and janela_atual is not None:            #Verifica se a janela atual é diferente da anterior
+            linha = registrar_janela(janela_atual)                                  #Registra a janela atual
+            salvar_linha(linha)                                                     #Salva a linha no arquivo de logs
+
+            janela_anterior = janela_atual                                          #Atualiza a janela anterior para a atual
+        
+        time.sleep(5)                                                              #Aguarda 5 segundo antes de verificar novamente
+    pass
