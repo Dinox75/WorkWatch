@@ -43,13 +43,15 @@ def iniciar_monitoramento():
     janela_anterior = None                                                          #Variável para armazenar a janela anterior
 
     while True:
-        janela_atual = obter_janela_ativa()                                         #Obtém a janela ativa atual
+        try:
+            janela_atual = obter_janela_ativa()                                         #Obtém a janela ativa atual
 
-        if janela_atual != janela_anterior and janela_atual is not None:            #Verifica se a janela atual é diferente da anterior
-            linha = registrar_janela(janela_atual)                                  #Registra a janela atual
-            salvar_linha(linha)                                                     #Salva a linha no arquivo de logs
+            if janela_atual != janela_anterior and janela_atual is not None:            #Verifica se a janela atual é diferente da anterior
+                linha = registrar_janela(janela_atual)                                  #Registra a janela atual
+                salvar_linha(linha)                                                     #Salva a linha no arquivo de logs
 
-            janela_anterior = janela_atual                                          #Atualiza a janela anterior para a atual
+                janela_anterior = janela_atual                                          #Atualiza a janela anterior para a atual
         
-        time.sleep(5)                                                              #Aguarda 5 segundo antes de verificar novamente
-    pass
+            time.sleep(5)                                                              #Aguarda 5 segundo antes de verificar novamente
+        except KeyboardInterrupt:
+            print("Monitoramento interrompido pelo usuário.")
