@@ -5,6 +5,9 @@
 
 import cv2
 from cvzone.FaceDetectionModule import FaceDetector
+import time
+from monitor.window_tracker import salvar_linha  # reaproveitamos o sistema de logs
+from datetime import datetime
 
 def detectar_presenca():
     # Força driver correto no Windows
@@ -34,11 +37,35 @@ def detectar_presenca():
         return False
 
 
-# 3. Função: monitorar_presenca()
-#    - loop contínuo
-#    - verifica presença em intervalos
-#    - registra entradas e saídas
-#    - (futuramente) salva logs
-
 def monitorar_presenca():
-    pass  # lógica será implementada depois
+    status_anterior = None  # True = presente, False = ausente
+
+    try:
+
+
+        while True:
+            status_atual = detectar_presenca()  # True ou False
+
+            # Se houve mudança (True->False ou False->True)
+            if status_atual != status_anterior:
+
+                agora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                
+                if status_atual is True:
+                    evento = "PRESENTE"
+                else:
+                    evento = "AUSENTE"
+
+                # montar linha CSV
+                data, hora = agora.split(" ")
+                linha = f"{data},{hora},EVENTO_PRESENCA,{evento}\n"
+
+                # salvar evento
+                salvar_linha(linha)
+
+                # atualizar status
+                status_anterior = status_atual
+
+            time.sleep(10)  # verifica a cada 10 segundosis
+    except KeyboardInterrupt:
+        print("Monitoramento de presença interrompido pelo usuário.")
