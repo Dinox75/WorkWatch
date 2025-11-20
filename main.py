@@ -5,6 +5,8 @@ import json
 
 from monitor.window_tracker import iniciar_monitoramento
 from monitor.presence_detector import monitorar_presenca
+from monitor.idle_tracker import monitorar_inatividade
+
 
 
 def main():
@@ -36,6 +38,16 @@ def main():
         threads.append(t_presenca)
         t_presenca.start()
 
+    if config["idle_tracker"]["enabled"]:
+        t_idle = threading.Thread(
+            target=monitorar_inatividade,
+            args=(stop_event, config["idle_tracker"]["interval_seconds"]),
+            name="idle_tracker"
+        )
+        threads.append(t_idle)
+        t_idle.start()
+
+    
     try:
         print("WorkWatch rodando ... Pressione Ctrl+C para parar.")
         while True:

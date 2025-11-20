@@ -7,6 +7,10 @@
         "enabled": true,
         "interval_seconds": 10
     },
+    "idle_tracker": {
+        "enabled": true,
+        "interval_seconds": 5
+    },
     "logging": {
         "file_path": "storage/logs.csv"
     }
