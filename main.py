@@ -1,34 +1,57 @@
 import threading
 import time
 import sys
+import json
 
 from monitor.window_tracker import iniciar_monitoramento
 from monitor.presence_detector import monitorar_presenca
 
+
 def main():
     stop_event = threading.Event()
 
-    #Inciar as threads de monitoramento
-    t_janelas = threading.Thread(target=iniciar_monitoramento, args=(stop_event,))
-    t_presenca = threading.Thread(target=monitorar_presenca, args=(stop_event,))
+    # Carregar configurações
+    with open("config.json", "r") as f:
+        config = json.load(f)
 
-    t_janelas.start()
-    t_presenca.start()
+    threads = []
+
+    # Iniciar monitor de janelas se estiver habilitado
+    if config["window_tracker"]["enabled"]:
+        t_janelas = threading.Thread(
+            target=iniciar_monitoramento,
+            args=(stop_event, config["window_tracker"]["interval_seconds"]),
+            name="window_tracker"
+        )
+        threads.append(t_janelas)
+        t_janelas.start()
+
+    # Iniciar monitor de presença se estiver habilitado
+    if config["presence_detector"]["enabled"]:
+        t_presenca = threading.Thread(
+            target=monitorar_presenca,
+            args=(stop_event, config["presence_detector"]["interval_seconds"]),
+            name="presence_detector"
+        )
+        threads.append(t_presenca)
+        t_presenca.start()
 
     try:
         print("WorkWatch rodando ... Pressione Ctrl+C para parar.")
         while True:
             time.sleep(1)
+
     except KeyboardInterrupt:
-        print("Parando WorkWatch...")
+        print("\nParando WorkWatch...")
         stop_event.set()
 
         print("Aguardando threads terminarem...")
-        t_janelas.join()
-        t_presenca.join()
+        for t in threads:
+            t.join()
 
         print("WorkWatch parado com sucesso.")
         sys.exit(0)
+
 
 if __name__ == "__main__":
     main()

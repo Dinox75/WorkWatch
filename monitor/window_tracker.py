@@ -39,7 +39,7 @@ def salvar_linha(linha):
     
 
 # 5. Função: iniciar_monitoramento()
-def iniciar_monitoramento(stop_event):
+def iniciar_monitoramento(stop_event, interval):
     janela_anterior = None                                                              #Variável para armazenar a janela anterior
 
     try:
@@ -52,7 +52,7 @@ def iniciar_monitoramento(stop_event):
                 janela_anterior = janela_atual                                          #Atualiza a janela anterior
 
             #Espera total de 5s, mas checando stop_event a cada 0.5s
-            total_wait = 5
+            total_wait = interval
             step = 0.5
             waited = 0
             while waited < total_wait:

@@ -1,0 +1,13 @@
+{
+    "window_tracker": {
+        "enabled": true,
+        "interval_seconds": 5
+    },
+    "presence_detector": {
+        "enabled": true,
+        "interval_seconds": 10
+    },
+    "logging": {
+        "file_path": "storage/logs.csv"
+    }
+}

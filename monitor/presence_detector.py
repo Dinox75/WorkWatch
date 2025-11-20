@@ -39,7 +39,7 @@ def detectar_presenca():
 # Monitora presença via webcam; registra apenas quando houver mudança.
 # stop_event: threading.Event para parada limpa.
 
-def monitorar_presenca(stop_event):
+def monitorar_presenca(stop_event, interval):
     status_anterior = None                                                  # True = presente, False = ausente
 
     try:
