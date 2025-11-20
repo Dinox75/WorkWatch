@@ -6,7 +6,7 @@
 import cv2
 from cvzone.FaceDetectionModule import FaceDetector
 import time
-from monitor.window_tracker import salvar_linha  # reaproveitamos o sistema de logs
+from monitor.window_tracker import salvar_linha                                     # reaproveitamos o sistema de logs
 from datetime import datetime
 
 def detectar_presenca():
@@ -36,36 +36,37 @@ def detectar_presenca():
     else:
         return False
 
+# Monitora presença via webcam; registra apenas quando houver mudança.
+# stop_event: threading.Event para parada limpa.
 
-def monitorar_presenca():
-    status_anterior = None  # True = presente, False = ausente
+def monitorar_presenca(stop_event):
+    status_anterior = None                                                  # True = presente, False = ausente
 
     try:
 
 
-        while True:
-            status_atual = detectar_presenca()  # True ou False
+        while not stop_event.is_set():
+            status_atual = detectar_presenca()                              # True ou False
 
             # Se houve mudança (True->False ou False->True)
             if status_atual != status_anterior:
-
                 agora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                
-                if status_atual is True:
-                    evento = "PRESENTE"
-                else:
-                    evento = "AUSENTE"
-
-                # montar linha CSV
                 data, hora = agora.split(" ")
+                evento = "PRESENTE" if status_atual else "AUSENTE"
                 linha = f"{data},{hora},EVENTO_PRESENCA,{evento}\n"
-
-                # salvar evento
                 salvar_linha(linha)
-
-                # atualizar status
                 status_anterior = status_atual
 
-            time.sleep(10)  # verifica a cada 10 segundosis
-    except KeyboardInterrupt:
-        print("Monitoramento de presença interrompido pelo usuário.")
+            total_wait = 10
+            step = 1
+            waited = 0
+            while waited < total_wait:
+                if stop_event.is_set():
+                    break
+                time.sleep(step)
+                waited += step
+            
+    except Exception as e:
+        print(f"[monitorar_presenca] erro: {e}")
+    finally:
+        print("monitorar_presenca finalizado")

@@ -39,19 +39,30 @@ def salvar_linha(linha):
     
 
 # 5. Função: iniciar_monitoramento()
-def iniciar_monitoramento():
-    janela_anterior = None                                                          #Variável para armazenar a janela anterior
+def iniciar_monitoramento(stop_event):
+    janela_anterior = None                                                              #Variável para armazenar a janela anterior
 
-    while True:
-        try:
+    try:
+        while not stop_event.is_set():                                                  #Loop infinito até o evento de parada ser acionado
             janela_atual = obter_janela_ativa()                                         #Obtém a janela ativa atual
 
-            if janela_atual != janela_anterior and janela_atual is not None:            #Verifica se a janela atual é diferente da anterior
-                linha = registrar_janela(janela_atual)                                  #Registra a janela atual
-                salvar_linha(linha)                                                     #Salva a linha no arquivo de logs
+            if janela_atual is not None and janela_atual != janela_anterior:           
+                linha = registrar_janela(janela_atual)                                  
+                salvar_linha(linha)                                                     
+                janela_anterior = janela_atual                                          #Atualiza a janela anterior
 
-                janela_anterior = janela_atual                                          #Atualiza a janela anterior para a atual
-        
-            time.sleep(5)                                                              #Aguarda 5 segundo antes de verificar novamente
-        except KeyboardInterrupt:
-            print("Monitoramento interrompido pelo usuário.")
+            #Espera total de 5s, mas checando stop_event a cada 0.5s
+            total_wait = 5
+            step = 0.5
+            waited = 0
+            while waited < total_wait:
+                if stop_event.is_set():
+                    break
+                time.sleep(step)
+                waited += step
+
+    except Exception as e:
+        #Log de erro
+        print(f"[iniciar_monitoramento] Ocorreu um erro: {e}")
+    finally:
+        print("iniciar_monitoramento finalizado.")                                       
