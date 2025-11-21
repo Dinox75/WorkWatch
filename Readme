@@ -1,168 +1,237 @@
-# WorkWatch
+WorkWatch
 
-WorkWatch é um sistema inteligente de monitoramento de produtividade desenvolvido em **Python**, com o objetivo de registrar e analisar atividades realizadas em um computador. O foco inicial do projeto é criar uma base sólida de monitoramento local, permitindo evoluções futuras para uso corporativo, dashboards, relatórios completos e integração com IA.
+WorkWatch é um sistema inteligente de monitoramento de produtividade desenvolvido em Python, projetado para acompanhar atividades realizadas no computador de forma contínua, estruturada e extensível.
+O objetivo do projeto é criar uma base sólida para evoluir futuramente para um ambiente corporativo, permitindo monitoramento profissional, análises avançadas, dashboards e integração com IA.
 
----
+🚀 Status Atual do Projeto
 
-## 🚀 Status do Projeto
+O WorkWatch está em estágio intermediário de desenvolvimento e já conta com:
 
-O projeto está em **fase inicial de desenvolvimento**, com os seguintes módulos já iniciados:
+✔ Arquitetura multithread completa
 
-* **Captura da janela ativa** (identificação do programa e título da janela)
-* **Registro estruturado de dados** (data, hora, janela, aplicativo)
-* **Sistema de geração de linha CSV**
-* **Salvamento dos registros em arquivo local**
+Cada módulo de monitoramento roda em sua própria thread, permitindo execução paralela sem travamentos.
 
-O objetivo atual é evoluir para:
+✔ Sistema de configuração via config.json
 
-* Monitoramento contínuo
-* Detecção de mudança de janela
-* Classificação de produtividade
-* Detector de presença com webcam
-* Detectores de ociosidade e multitarefa
-* Dashboard local
-* Sistema de relatórios
+O usuário pode ativar/desativar módulos e alterar intervalos sem mudar o código.
 
----
+✔ Monitoramento de janelas
 
-## 🧠 Objetivo Geral
+Captura da janela ativa
 
-Monitorar e registrar automaticamente o que o usuário está fazendo no computador, com o propósito de:
+Identificação do programa executável
 
-* Medir produtividade
-* Detectar uso inadequado do computador
-* Identificar padrões de foco e distração
-* Gerar relatórios detalhados
-* Preparar terreno para um sistema corporativo de monitoramento
+Registro apenas quando a janela muda
 
-O projeto é inicialmente para **uso pessoal e testes locais**, visando futura expansão comercial.
+✔ Detector de presença via webcam
 
----
+Usa OpenCV + MediaPipe (cvzone)
 
-## ⚙️ Tecnologias Utilizadas
+Detecta se o usuário está fisicamente presente
 
-* **Python 3.10+**
-* `pygetwindow` → Captura da janela ativa
-* `psutil` → Identificação do programa (processo)
-* `pywin32` → Acesso ao handle da janela e PID
-* `datetime` → Registro de data/hora
-* (planejado) `opencv-python` → Detector de presença via webcam
-* (planejado) `pynput` → Monitoramento de teclado/mouse
-* (planejado) `pandas`, `matplotlib` → Relatórios e análises
-* (planejado) `Flask` → Dashboard e API local
+Registra mudanças: PRESENTE / AUSENTE
 
----
+✔ Detector de inatividade (Idle Tracker)
 
-## 📁 Estrutura Atual do Projeto
+Usa API nativa do Windows (GetLastInputInfo)
 
-```
+Detecta tempo sem teclado/mouse
+
+Registra quando o usuário fica INATIVO e quando volta a ATIVO
+
+✔ Sistema de registro consolidado em CSV
+
+Todos os eventos são gravados em:
+
+storage/logs.csv
+
+✔ Encerramento limpo
+
+Ao pressionar CTRL + C, o sistema:
+
+dispara sinal de parada para todas as threads
+
+finaliza com segurança
+
+libera a webcam
+
+evita erros de KeyboardInterrupt
+
+🧠 Objetivo Geral
+
+Fornecer um monitoramento completo e preciso de uso do computador para:
+
+Analisar produtividade real
+
+Identificar distrações
+
+Registrar comportamento ao longo do dia
+
+Medir presença e engajamento
+
+Analisar padrões de trabalho e pausas
+
+Criar bases para relatórios corporativos
+
+O projeto está sendo construído para uso pessoal e para aprendizado, com visão clara de expansão futura.
+
+⚙️ Tecnologias Utilizadas
+
+Python 3.10
+
+pygetwindow — captura da janela ativa
+
+psutil — obtenção do nome do processo
+
+pywin32 — acesso ao PID e handle da janela
+
+opencv-python — captura de webcam
+
+cvzone — detecção facial (via MediaPipe)
+
+ctypes — acesso ao GetLastInputInfo
+
+threading — multitarefa real
+
+json — sistema de configuração
+
+datetime — formatação de registros
+
+📁 Estrutura Atual do Projeto
 WorkWatch/
 │
-├── main.py
-├── monitor/
-│   ├── window_tracker.py
-│   ├── idle_tracker.py       (planejado)
-│   ├── presence_detector.py  (planejado)
-│   ├── multitask_analyzer.py (planejado)
+├── main.py                       # Orquestrador das threads e shutdown limpo
 │
-├── analyzer/
-│   └── content_classifier.py (planejado)
+├── config.json                   # Configurações do sistema
+│
+├── monitor/
+│   ├── window_tracker.py         # Monitor de janelas
+│   ├── presence_detector.py      # Monitor de presença (webcam)
+│   ├── idle_tracker.py           # Monitor de inatividade (teclado/mouse)
+│   └── multitask_analyzer.py     # (planejado)
 │
 ├── storage/
-│   └── logs.csv
+│   └── logs.csv                  # Registro consolidado de eventos
+│
+├── analyzer/
+│   └── content_classifier.py     # (planejado)
 │
 ├── reports/
-│   └── report_generator.py   (planejado)
+│   └── report_generator.py       # (planejado)
 │
 ├── dashboard/
-│   └── app.py                (planejado)
+│   └── app.py                    # (planejado)
 │
 └── utils/
-    ├── config.py             (planejado)
-    └── logger.py             (planejado)
-```
+    ├── config.py                 # (planejado)
+    └── logger.py                 # (planejado)
 
----
+📝 Funcionalidades Concluídas
+✔ 1. Monitor de Janelas
 
-## 📝 Funcionalidades Concluídas
+Registra:
 
-### ✔ Captura da Janela Ativa
+título da janela ativa
 
-O sistema detecta:
+programa executável
 
-* Qual janela está focada no momento
-* Título da janela
-* Nome do programa executável
+data e hora
 
-### ✔ Registro Estruturado
+mudanças de janelas
 
-Cada evento é registrado com:
+✔ 2. Detector de Presença
 
-* Data
-* Hora
-* Título da janela
-* Programa
+Detecta rosto via webcam
 
-### ✔ Salvamento em CSV
+Eventos: PRESENTE e AUSENTE
 
-O projeto já salva os registros em:
+Evita duplicações
 
-```
-storage/logs.csv
-```
+Rodando em thread separada
 
----
+✔ 3. Idle Tracker (Inatividade)
 
-## 🧩 Próximas Etapas
+Detecta quando o usuário está inativo (>60s)
 
-* Implementar monitoramento contínuo (loop ativo)
-* Registrar apenas quando a janela mudar
-* Criar detector de presença via webcam
-* Adicionar módulo de ociosidade (sem teclado/mouse)
-* Criar classificador simples de produtividade
-* Implementar geração de relatórios (PDF/HTML)
-* Criar dashboard local (Flask ou Streamlit)
+Eventos: ATIVO e INATIVO
 
----
+Extremamente leve (API nativa do Windows)
 
-## 🌱 Objetivo Futuro
+✔ 4. Sistema de Configuração
 
-Transformar o WorkWatch em um sistema completo de monitoramento corporativo, com:
+Arquivo config.json:
 
-* Gestão via dashboard
-* Relatórios automáticos
-* Monitoramento inteligente por IA
-* Mecanismos de alerta automático
-* Detecção de atividades suspeitas
-* Perfis de uso por colaborador
+{
+  "window_tracker": { "enabled": true, "interval_seconds": 5 },
+  "presence_detector": { "enabled": true, "interval_seconds": 10 },
+  "idle_tracker": { "enabled": true, "interval_seconds": 5 },
+  "logging": { "file_path": "storage/logs.csv" }
+}
 
----
+✔ 5. Arquitetura Multi-Thread
 
-## 📌 Aviso Importante
+Cada módulo em sua própria thread
 
-O sistema está sendo desenvolvido **somente para uso pessoal** no momento, para fins educacionais e de experimentação.
-Qualquer uso em ambiente corporativo exige:
+Shutdown limpo
 
-* consentimento explícito do usuário
-* políticas claras de privacidade e monitoramento
-* configuração ética e legal
+Sem travar webcam
 
----
+Sem travar monitoramento
 
-## 🤝 Como Contribuir
+🧩 Próximas Etapas
 
-O projeto é aberto a melhorias e sugestões.
-Pull requests serão avaliados no futuro, quando a versão base estiver finalizada.
+Detector de multitarefa (troca rápida de janelas)
 
----
+Análise de produtividade por classificação de apps
 
-## 👨‍💻 Autor
+Agrupamento automático de categorias
 
-**Vinicius Lima**
-Projeto desenvolvido com fins de estudo, aprendizado e futura aplicação comercial.
+Dashboard local em Flask/Streamlit
 
----
+Relatórios gráficos (PDF, PNG)
 
-## 📅 Última Atualização
+Análise de comportamento com IA
 
-**16/11/2025**
+Detecção de padrões suspeitos
+
+Sistema de permissões corporativas
+
+🌱 Objetivo Futuro
+
+Transformar o WorkWatch em uma solução profissional completa:
+
+Gerenciamento centralizado
+
+Relatórios corporativos automáticos
+
+Indicadores de performance
+
+Detecção de comportamentos críticos
+
+Alertas em tempo real (WhatsApp/Email)
+
+Detecção de micropauses e procrastinação
+
+Identificação de multitarefas prejudiciais
+
+⚠️ Aviso Importante
+
+O WorkWatch está sendo desenvolvido somente para uso pessoal, estudo e testes locais.
+Para uso corporativo real é necessário:
+
+Consentimento do colaborador
+
+Conformidade com LGPD
+
+Política clara de monitoramento
+
+Auditoria de dados
+
+👨‍💻 Autor
+
+Vinicius Lima
+Desenvolvido como projeto pessoal de estudos e futura aplicação profissional.
+
+📅 Última Atualização
+
+17/11/2025
