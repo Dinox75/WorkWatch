@@ -6,7 +6,7 @@ import json
 from monitor.window_tracker import iniciar_monitoramento
 from monitor.presence_detector import monitorar_presenca
 from monitor.idle_tracker import monitorar_inatividade
-
+from monitor.multitask_analyzer import monitorar_multitarefa
 
 
 def main():
@@ -47,7 +47,15 @@ def main():
         threads.append(t_idle)
         t_idle.start()
 
-    
+    if config["multitask_analyzer"]["enabled"]:
+        t_multi = threading.Thread(
+            target=monitorar_multitarefa,
+            args=(stop_event, config["multitask_analyzer"]["interval_seconds"]),
+            name="multitask_analyzer"
+        )
+        threads.append(t_multi)
+        t_multi.start()
+
     try:
         print("WorkWatch rodando ... Pressione Ctrl+C para parar.")
         while True:
