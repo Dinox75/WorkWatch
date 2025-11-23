@@ -6,30 +6,63 @@ from monitor.window_tracker import obter_janela_ativa, salvar_linha
 def analisar_multitarefa(historico):
     """
     Recebe uma lista com histórico recente de programas.
-    Retorna um evento se detectar padrão de multitarefa.
+    Retorna um nível de multitarefa ou evento específico.
     """
 
     # só começa a analisar quando tiver pelo menos 3 registros
     if len(historico) < 3:
         return None
 
-    # --- TROCA RÁPIDA ---
     ultimas3 = historico[-3:]
+    ultimas4 = historico[-4:]
+    ultimas5 = historico[-5:]
+
+    # ============================================================
+    # 🔥 1) MULTITAREFA INTENSA
+    # ============================================================
+
+    # 1A — Muitos programas diferentes nos últimos 5
+    if len(ultimas5) >= 5 and len(set(ultimas5)) >= 4:
+        return "NIVEL_MULTITAREFA_INTENSA"
+
+    # 1B — Oscilação ABAB (sempre intensa)
+    if len(ultimas4) == 4 and len(set(ultimas4)) == 2:
+        a, b, c, d = ultimas4
+        if a != b and a == c and b == d:
+            return "NIVEL_MULTITAREFA_INTENSA"
+
+    # 1C — Troca muito diversa (3 trocas e 3 programas diferentes)
+    if len(ultimas5) >= 5 and len(set(ultimas5)) == 3:
+        # se última sequência tiver 3 apps diferentes rapidamente
+        if len(set(ultimas3)) == 3:
+            return "NIVEL_MULTITAREFA_INTENSA"
+
+    # ============================================================
+    # 🟡 2) MULTITAREFA MODERADA
+    # ============================================================
+
+    # Critério: 3 programas diferentes nos últimos 5, sem ser intensa
+    if len(ultimas5) >= 5 and len(set(ultimas5)) == 3:
+        return "NIVEL_MULTITAREFA_MODERADA"
+
+    # ============================================================
+    # 🟢 3) MULTITAREFA LEVE
+    # ============================================================
+
+    # Critério: 2 programas diferentes, sem forte oscilação
+    if len(ultimas5) >= 3 and len(set(ultimas5)) == 2:
+        return "NIVEL_MULTITAREFA_LEVE"
+
+    # ============================================================
+    # EVENTOS BÁSICOS (mantidos como complemento)
+
+
+    # TROCA_RÁPIDA
     if len(set(ultimas3)) == 3:
         return "TROCA_RAPIDA"
 
-    # --- OSCILAÇÃO ENTRE APPS (ABAB) ---
-    if len(historico) >= 4:
-        ultimas4 = historico[-4:]
-
-        # deve haver apenas 2 apps diferentes
-        if len(set(ultimas4)) == 2:
-            a, b, c, d = ultimas4
-            # padrão A B A B
-            if a != b and a == c and b == d:
-                return "OSCILACAO_ENTRE_APPS"
-
     return None
+
 
 
 def monitorar_multitarefa(stop_event, interval):
