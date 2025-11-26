@@ -1,0 +1,16 @@
+{
+  "produtivo": [
+    "Code.exe"
+  ],
+  "neutro": [
+    "chrome.exe",
+    "explorer.exe"
+  ],
+  "improdutivo": [
+    "Discord.exe",
+    "Spotify.exe",
+    "steamwebhelper.exe"
+  ],
+  "restrito": [],
+  "suspeito": []
+}

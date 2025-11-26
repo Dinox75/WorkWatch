@@ -13,7 +13,7 @@ def main():
     stop_event = threading.Event()
 
     # Carregar configurações
-    with open("config.json", "r") as f:
+    with open("config/config.json", "r") as f:
         config = json.load(f)
 
     threads = []
