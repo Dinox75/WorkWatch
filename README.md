@@ -1,77 +1,107 @@
 <p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:020617,35:0EA5E9,70:2563EB,100:7C3AED&height=170&section=header&text=WorkWatch&fontColor=FFFFFF&fontSize=48&fontAlignY=34&desc=Intelligent%20Productivity%20Monitoring%20with%20Python&descAlignY=58&descSize=18&animation=fadeIn" width="100%" alt="WorkWatch Header" />
+</p>
+ 
+<p align="center">
   <img src="./assets/banner_Work.png" alt="Banner do projeto WorkWatch" width="100%">
 </p>
  
-<h1 align="center">WorkWatch</h1>
+<h1 align="center">⚡ WorkWatch</h1>
  
 <p align="center">
-  <strong>Sistema inteligente de monitoramento de produtividade desenvolvido em Python</strong>
+  <strong>Sistema inteligente de monitoramento de produtividade em Python</strong><br>
+  <sub>Monitoramento local, logs estruturados, presença via webcam, idle tracker e arquitetura preparada para evolução corporativa.</sub>
 </p>
  
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&duration=3000&pause=900&color=00D9FF&center=true&vCenter=true&width=900&lines=Monitoramento+de+janelas+em+tempo+real;Detec%C3%A7%C3%A3o+de+presen%C3%A7a+via+webcam;Idle+Tracker+com+API+nativa+do+Windows;Logs+estruturados+em+CSV;Arquitetura+multi-thread+em+Python" alt="Animação com recursos do WorkWatch" />
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=22&duration=2800&pause=700&color=00D9FF&center=true&vCenter=true&width=1000&lines=Monitoramento+de+janelas+em+tempo+real;Presen%C3%A7a+via+webcam+com+OpenCV+e+MediaPipe;Idle+Tracker+com+API+nativa+do+Windows;Logs+estruturados+em+CSV;Arquitetura+multi-thread+para+m%C3%B3dulos+independentes;Base+futura+para+dashboards%2C+relat%C3%B3rios+e+IA" alt="Animação com recursos do WorkWatch" />
 </p>
  
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.10-00D9FF?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10">
-  <img src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-005BFF?style=for-the-badge" alt="Status do Projeto">
+  <img src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-2563EB?style=for-the-badge" alt="Status do Projeto">
   <img src="https://img.shields.io/badge/Logs-CSV-00B8A9?style=for-the-badge" alt="Logs em CSV">
-  <img src="https://img.shields.io/badge/Arquitetura-Multi--Thread-6C63FF?style=for-the-badge" alt="Arquitetura Multi-Thread">
+  <img src="https://img.shields.io/badge/Arquitetura-Multi--Thread-7C3AED?style=for-the-badge" alt="Arquitetura Multi-Thread">
   <img src="https://img.shields.io/badge/Plataforma-Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="Windows">
+  <img src="https://img.shields.io/badge/Privacidade-LGPD%20Aware-22C55E?style=for-the-badge" alt="LGPD Aware">
+</p>
+ 
+<p align="center">
+  <a href="#-visão-geral"><img src="https://img.shields.io/badge/Vis%C3%A3o%20Geral-0F172A?style=flat-square&logo=target&logoColor=00D9FF" /></a>
+  <a href="#-funcionalidades"><img src="https://img.shields.io/badge/Funcionalidades-0F172A?style=flat-square&logo=windowsterminal&logoColor=00D9FF" /></a>
+  <a href="#-arquitetura"><img src="https://img.shields.io/badge/Arquitetura-0F172A?style=flat-square&logo=diagramsdotnet&logoColor=00D9FF" /></a>
+  <a href="#-como-executar"><img src="https://img.shields.io/badge/Como%20Executar-0F172A?style=flat-square&logo=rocket&logoColor=00D9FF" /></a>
+  <a href="#-roadmap"><img src="https://img.shields.io/badge/Roadmap-0F172A?style=flat-square&logo=trello&logoColor=00D9FF" /></a>
+  <a href="#-autor"><img src="https://img.shields.io/badge/Autor-0F172A?style=flat-square&logo=github&logoColor=00D9FF" /></a>
 </p>
  
 ---
  
-## 📌 Visão Geral
+## 🌌 Visão Geral
  
-O **WorkWatch** é um sistema inteligente de monitoramento de produtividade criado em **Python**, com foco em acompanhar atividades realizadas no computador de forma contínua, estruturada e extensível.
+O **WorkWatch** é um sistema inteligente de monitoramento de produtividade desenvolvido em **Python**, criado para acompanhar atividades realizadas no computador de forma contínua, estruturada e expansível.
  
-O projeto registra eventos importantes do ambiente de trabalho, como **janela ativa**, **programa em uso**, **presença via webcam**, **tempo de inatividade** e **logs consolidados em CSV**. A proposta é construir uma base técnica robusta para evoluir futuramente para dashboards, relatórios corporativos, análises de produtividade e integração com inteligência artificial.
+A proposta do projeto é registrar eventos importantes do ambiente de trabalho, como **janela ativa**, **programa em uso**, **presença física via webcam**, **tempo de inatividade** e **logs consolidados em CSV**. Esses dados formam uma base técnica para futuras análises, dashboards, relatórios corporativos e integração com inteligência artificial.
  
-> Projeto desenvolvido para estudo, uso pessoal, construção de portfólio e evolução prática em arquitetura de software, automação, análise de dados e monitoramento local.
+> O projeto nasceu como estudo prático e portfólio, mas foi estruturado com visão de produto: modular, extensível, documentado e preparado para evoluir para um cenário profissional.
  
 ---
  
 ## 🎯 Objetivo do Projeto
  
-O WorkWatch foi criado com o objetivo de responder uma pergunta simples, mas muito importante:
+O WorkWatch responde a uma pergunta central:
  
 > **Como medir, registrar e analisar a produtividade real de uso do computador de forma organizada, leve e evolutiva?**
  
-A partir dessa ideia, o sistema busca fornecer uma estrutura capaz de:
+A partir dessa ideia, o sistema busca entregar uma base sólida para:
  
-- Registrar atividades realizadas no computador.
-- Identificar qual janela ou programa está em uso.
-- Detectar presença física do usuário via webcam.
-- Identificar períodos de inatividade por teclado e mouse.
-- Consolidar eventos em logs estruturados.
-- Servir como base para relatórios, dashboards e análises futuras.
-- Evoluir para um modelo corporativo com responsabilidade, transparência e conformidade com a LGPD.
- 
----
- 
-## 🚀 Status Atual
- 
-| Área | Status | Descrição |
-|---|---:|---|
-| Monitoramento de janelas | ✅ Concluído | Captura janela ativa, programa executável e mudanças de foco. |
-| Detector de presença | ✅ Concluído | Detecta presença física por webcam usando OpenCV + cvzone/MediaPipe. |
-| Idle Tracker | ✅ Concluído | Identifica inatividade usando API nativa do Windows. |
-| Logs em CSV | ✅ Concluído | Registra eventos consolidados em `storage/logs.csv`. |
-| Configuração via JSON | ✅ Concluído | Permite ativar/desativar módulos e ajustar intervalos. |
-| Arquitetura multi-thread | ✅ Concluído | Cada monitor roda em thread separada, sem travar a aplicação. |
-| Dashboard local | 🧩 Planejado | Visualização gráfica dos dados coletados. |
-| Classificação de produtividade | 🧩 Planejado | Classificação de apps e sites como produtivos, neutros ou distrativos. |
-| Relatórios automáticos | 🧩 Planejado | Exportação futura em PDF, PNG ou dashboard. |
-| Integração com IA | 🧩 Planejado | Análise inteligente de padrões de comportamento e produtividade. |
+<table>
+  <tr>
+    <td width="50%">
+      <h3>📡 Monitoramento Local</h3>
+      <p>Capturar janelas, programas, presença e inatividade sem depender de serviços externos.</p>
+    </td>
+    <td width="50%">
+      <h3>📊 Dados para Análise</h3>
+      <p>Gerar logs estruturados para análise futura em Python, Excel, Power BI, dashboards ou IA.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3>🧩 Arquitetura Modular</h3>
+      <p>Separar responsabilidades em módulos independentes, facilitando manutenção e evolução.</p>
+    </td>
+    <td width="50%">
+      <h3>🏢 Visão Corporativa</h3>
+      <p>Criar uma base técnica que possa evoluir para relatórios, gestão, auditoria e conformidade com LGPD.</p>
+    </td>
+  </tr>
+</table>
  
 ---
  
-## 🧠 Principais Funcionalidades
+## 🧭 Status Executivo
+ 
+| Pilar | Status | Nível Atual | Descrição |
+|---|---:|---|---|
+| Monitoramento de janelas | ✅ | MVP funcional | Captura janela ativa, programa executável e mudanças de foco. |
+| Detector de presença | ✅ | MVP funcional | Detecta presença via webcam com OpenCV + cvzone/MediaPipe. |
+| Idle Tracker | ✅ | MVP funcional | Identifica inatividade usando API nativa do Windows. |
+| Logs em CSV | ✅ | Funcional | Registra eventos consolidados em `storage/logs.csv`. |
+| Configuração via JSON | ✅ | Funcional | Permite ativar/desativar módulos e ajustar intervalos. |
+| Arquitetura multi-thread | ✅ | Funcional | Cada monitor roda em thread separada, sem travar a aplicação. |
+| Dashboard local | 🧩 | Planejado | Visualização gráfica dos dados coletados. |
+| Classificação de produtividade | 🧩 | Planejado | Classificação de apps e sites como produtivos, neutros ou distrativos. |
+| Relatórios automáticos | 🧩 | Planejado | Exportação futura em PDF, PNG ou painel web. |
+| Integração com IA | 🧩 | Planejado | Análise inteligente de padrões de comportamento e produtividade. |
+ 
+---
+ 
+## ⚙️ Funcionalidades
  
 ### 🪟 1. Monitoramento de Janelas
  
-O sistema acompanha a janela ativa no computador e registra alterações relevantes de uso.
+O módulo de janelas acompanha a aplicação ativa no computador e registra mudanças relevantes de foco.
  
 **O que ele identifica:**
  
@@ -82,14 +112,14 @@ O sistema acompanha a janela ativa no computador e registra alterações relevan
  
 **Exemplo de uso prático:**
  
-- Saber quanto tempo o usuário ficou alternando entre VS Code, navegador, terminal, documentos ou outros programas.
-- Criar base futura para classificar atividades como produtivas, neutras ou distrativas.
+- Identificar quanto tempo o usuário alternou entre VS Code, navegador, terminal, documentos e outros programas.
+- Criar base para classificar atividades como produtivas, neutras ou distrativas.
  
 ---
  
 ### 🎥 2. Detector de Presença via Webcam
  
-O detector de presença utiliza webcam para identificar se o usuário está fisicamente presente diante do computador.
+O detector de presença usa webcam para identificar se o usuário está fisicamente presente diante do computador.
  
 **Recursos atuais:**
  
@@ -99,7 +129,7 @@ O detector de presença utiliza webcam para identificar se o usuário está fisi
 - Execução isolada em thread separada.
 - Liberação segura da webcam ao encerrar o sistema.
  
-**Importante:** o objetivo não é gravar o usuário, mas detectar presença como evento técnico para análise de engajamento e uso do computador.
+> O objetivo não é gravar ou vigiar o usuário. A webcam é usada como sensor técnico de presença, registrando apenas eventos relevantes para análise de engajamento e uso do computador.
  
 ---
  
@@ -120,7 +150,7 @@ O Idle Tracker detecta quando o usuário fica sem interagir com teclado ou mouse
  
 ### 🧾 4. Logs Consolidados em CSV
  
-Todos os eventos importantes são registrados em um arquivo CSV, facilitando futuras análises com Python, Excel, Power BI ou dashboards.
+Todos os eventos importantes são registrados em um arquivo CSV, facilitando análise futura com Python, Excel, Power BI ou dashboards.
  
 Arquivo principal:
  
@@ -139,44 +169,16 @@ data,hora,modulo,evento,detalhe
  
 ---
  
-### ⚙️ 5. Sistema de Configuração
- 
-O WorkWatch possui configuração externa em JSON, permitindo alterar o comportamento dos módulos sem mexer diretamente no código.
- 
-Exemplo de `config.json`:
- 
-```json
-{
-  "window_tracker": {
-    "enabled": true,
-    "interval_seconds": 5
-  },
-  "presence_detector": {
-    "enabled": true,
-    "interval_seconds": 10
-  },
-  "idle_tracker": {
-    "enabled": true,
-    "interval_seconds": 5
-  },
-  "logging": {
-    "file_path": "storage/logs.csv"
-  }
-}
-```
- 
----
- 
-### 🧵 6. Arquitetura Multi-Thread
+### 🧵 5. Arquitetura Multi-Thread
  
 Cada módulo de monitoramento roda em sua própria thread, permitindo execução paralela e evitando travamentos.
  
-**Vantagens dessa abordagem:**
+**Vantagens:**
  
 - O monitoramento de janelas não trava a webcam.
 - A webcam não impede o Idle Tracker de funcionar.
 - O encerramento do sistema fica mais controlado.
-- A aplicação se torna mais preparada para crescer em módulos independentes.
+- A aplicação se torna preparada para crescer com módulos independentes.
  
 Ao pressionar `CTRL + C`, o sistema realiza um encerramento limpo:
  
@@ -187,12 +189,16 @@ Ao pressionar `CTRL + C`, o sistema realiza um encerramento limpo:
  
 ---
  
-## 🏗️ Arquitetura do Projeto
+## 🏗️ Arquitetura
  
-O WorkWatch foi pensado de forma modular. Cada pasta tem uma responsabilidade clara, facilitando manutenção, evolução e leitura por outros desenvolvedores.
+O WorkWatch foi pensado com separação de responsabilidades. Cada pasta possui uma função clara, facilitando manutenção, leitura e evolução.
  
 ```text
 WorkWatch/
+│
+├── README.md                     # Documentação principal do projeto
+├── assets/
+│   └── banner_Work.png           # Banner visual do README
 │
 ├── main.py                       # Orquestrador principal das threads e do shutdown limpo
 │
@@ -227,19 +233,63 @@ WorkWatch/
  
 ```mermaid
 flowchart TD
-    A[Início do sistema] --> B[Carrega config.json]
-    B --> C[Inicializa módulos habilitados]
-    C --> D[Thread: Monitor de Janelas]
-    C --> E[Thread: Detector de Presença]
-    C --> F[Thread: Idle Tracker]
-    D --> G[Registra eventos em CSV]
+    A[🚀 Início do sistema] --> B[⚙️ Carrega config.json]
+    B --> C{Módulos habilitados?}
+ 
+    C --> D[🪟 Thread: Monitor de Janelas]
+    C --> E[🎥 Thread: Detector de Presença]
+    C --> F[⏱️ Thread: Idle Tracker]
+ 
+    D --> G[🧾 Logs em CSV]
     E --> G
     F --> G
-    G --> H[Base para análises futuras]
-    H --> I[Dashboard / Relatórios / IA]
+ 
+    G --> H[📊 Base de análise]
+    H --> I[📈 Dashboard futuro]
+    H --> J[📄 Relatórios]
+    H --> K[🤖 Análise com IA]
+ 
+    classDef start fill:#020617,stroke:#00D9FF,color:#FFFFFF,stroke-width:2px;
+    classDef module fill:#0F172A,stroke:#38BDF8,color:#FFFFFF,stroke-width:2px;
+    classDef data fill:#111827,stroke:#22C55E,color:#FFFFFF,stroke-width:2px;
+    classDef future fill:#1E1B4B,stroke:#A855F7,color:#FFFFFF,stroke-width:2px;
+ 
+    class A,B,C start;
+    class D,E,F module;
+    class G,H data;
+    class I,J,K future;
 ```
  
-> Observação: o diagrama acima usa Mermaid, que é renderizado automaticamente pelo GitHub em arquivos Markdown compatíveis.
+---
+ 
+## 🧠 Visão Técnica do Produto
+ 
+```mermaid
+mindmap
+  root((WorkWatch))
+    Monitoramento
+      Janela ativa
+      Programa executável
+      Troca de foco
+    Presença
+      Webcam
+      OpenCV
+      MediaPipe
+    Inatividade
+      Teclado
+      Mouse
+      GetLastInputInfo
+    Dados
+      CSV
+      Data e hora
+      Eventos consolidados
+    Evolução
+      Dashboard
+      Relatórios
+      Classificação de apps
+      IA
+      LGPD
+```
  
 ---
  
@@ -259,9 +309,17 @@ flowchart TD
 | csv | Registro estruturado de eventos. |
 | datetime | Registro de data e hora dos eventos. |
  
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-0F172A?style=for-the-badge&logo=python&logoColor=00D9FF" />
+  <img src="https://img.shields.io/badge/OpenCV-0F172A?style=for-the-badge&logo=opencv&logoColor=00D9FF" />
+  <img src="https://img.shields.io/badge/Windows%20API-0F172A?style=for-the-badge&logo=windows&logoColor=00D9FF" />
+  <img src="https://img.shields.io/badge/CSV%20Logs-0F172A?style=for-the-badge&logo=files&logoColor=00D9FF" />
+  <img src="https://img.shields.io/badge/Multi--Thread-0F172A?style=for-the-badge&logo=python&logoColor=7C3AED" />
+</p>
+ 
 ---
  
-## 💻 Como Executar o Projeto
+## 💻 Como Executar
  
 ### 1. Clone o repositório
  
@@ -303,7 +361,7 @@ python main.py
 - O Idle Tracker usa API nativa do Windows.
 - O detector de presença precisa de webcam disponível.
 - A webcam deve ser liberada corretamente no encerramento.
-- Em alguns ambientes, bibliotecas como OpenCV, MediaPipe e pywin32 podem exigir ajustes de instalação.
+- Bibliotecas como OpenCV, MediaPipe e pywin32 podem exigir ajustes de instalação dependendo do ambiente.
 - O projeto está em desenvolvimento e pode passar por mudanças estruturais.
  
 ---
@@ -312,21 +370,40 @@ python main.py
  
 Com os dados registrados em CSV, o WorkWatch poderá evoluir para análises como:
  
-- Tempo total ativo por dia.
-- Tempo total inativo por período.
-- Aplicações mais utilizadas.
-- Frequência de troca de janelas.
-- Padrões de multitarefa.
-- Picos de produtividade.
-- Horários de maior distração.
-- Classificação de programas por categoria.
-- Relatórios semanais ou mensais.
+<table>
+  <tr>
+    <td width="33%">
+      <h3>📈 Produtividade</h3>
+      <ul>
+        <li>Tempo total ativo por dia</li>
+        <li>Tempo inativo por período</li>
+        <li>Picos de produtividade</li>
+      </ul>
+    </td>
+    <td width="33%">
+      <h3>🧭 Comportamento</h3>
+      <ul>
+        <li>Frequência de troca de janelas</li>
+        <li>Padrões de multitarefa</li>
+        <li>Horários de distração</li>
+      </ul>
+    </td>
+    <td width="33%">
+      <h3>🏢 Gestão</h3>
+      <ul>
+        <li>Relatórios semanais</li>
+        <li>Classificação de programas</li>
+        <li>Indicadores por categoria</li>
+      </ul>
+    </td>
+  </tr>
+</table>
  
 ---
  
 ## 🧩 Roadmap
  
-### Curto Prazo
+### 🔵 Curto Prazo
  
 - [ ] Melhorar o sistema centralizado de logs.
 - [ ] Criar `requirements.txt`.
@@ -334,7 +411,7 @@ Com os dados registrados em CSV, o WorkWatch poderá evoluir para análises como
 - [ ] Criar camada de configuração em `utils/config.py`.
 - [ ] Criar logger reutilizável em `utils/logger.py`.
  
-### Médio Prazo
+### 🟣 Médio Prazo
  
 - [ ] Implementar detector de multitarefa.
 - [ ] Criar classificador de programas produtivos, neutros e distrativos.
@@ -342,7 +419,7 @@ Com os dados registrados em CSV, o WorkWatch poderá evoluir para análises como
 - [ ] Criar dashboard local com Flask ou Streamlit.
 - [ ] Adicionar gráficos de atividade.
  
-### Longo Prazo
+### 🟢 Longo Prazo
  
 - [ ] Integrar análise com IA.
 - [ ] Gerar relatórios automáticos em PDF.
@@ -374,7 +451,7 @@ Para qualquer aplicação em ambiente corporativo real, é necessário considera
  
 ## 📚 Aprendizados Aplicados
  
-Este projeto reúne vários conceitos importantes para desenvolvimento Python e construção de sistemas reais:
+Este projeto reúne conceitos importantes para desenvolvimento Python e construção de sistemas reais:
  
 - Organização modular de projeto.
 - Manipulação de arquivos CSV e JSON.
@@ -389,7 +466,7 @@ Este projeto reúne vários conceitos importantes para desenvolvimento Python e 
  
 ---
  
-## 👨‍💻 Autor
+## 🧑‍💻 Autor
  
 **Vinicius Lima**
  
@@ -404,6 +481,9 @@ Estudante de **Análise de Dados e Desenvolvimento de Sistemas**, em evolução 
   </a>
   <a href="mailto:vibylima75@gmail.com">
     <img src="https://img.shields.io/badge/E--mail-vibylima75%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Vinicius Lima">
+  </a>
+  <a href="https://www.tiktok.com/@dinox_xv">
+    <img src="https://img.shields.io/badge/TikTok-%40dinox__xv-000000?style=for-the-badge&logo=tiktok&logoColor=white" alt="TikTok Dinox XV">
   </a>
 </p>
  
@@ -427,5 +507,9 @@ Consulte o arquivo `LICENSE` deste repositório para mais informações.
 ---
  
 <p align="center">
-  Desenvolvido por <strong>Vinicius Lima</strong> • Python • Monitoramento • Produtividade • Portfólio
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:7C3AED,50:2563EB,100:00D9FF&height=120&section=footer" width="100%" alt="Footer" />
+</p>
+ 
+<p align="center">
+  Desenvolvido por <strong>Vinicius Lima</strong> • Python • Monitoramento • Produtividade • Dados • Portfólio
 </p>
