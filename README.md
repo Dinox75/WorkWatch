@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/banner_work.png" alt="Banner do projeto WorkWatch" width="100%">
+  <img src="./assets/banner_Work.png" alt="Banner do projeto WorkWatch" width="100%">
 </p>
  
 <h1 align="center">WorkWatch</h1>
